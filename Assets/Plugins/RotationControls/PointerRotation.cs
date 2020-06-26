@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace RotationControls
@@ -10,7 +9,6 @@ namespace RotationControls
         [SerializeField] private Rigidbody _target = default;
         [SerializeField] private bool _invert = true;
         [SerializeField] private float _sensitivity = 360f;
-        [SerializeField] private Mode _mode = Mode.Kinematic;
 
         void IDragHandler.OnDrag(PointerEventData eventData)
         {
@@ -24,19 +22,9 @@ namespace RotationControls
 
         private RotationControls CreateControls()
         {
-            switch (_mode)
-            {
-                case Mode.Kinematic: return new KinematicRotationControls(_target, _camera, _sensitivity, _invert);
-                case Mode.Dynamic: return new DynamicRotationControls(_target, _camera, _sensitivity, _invert);
-                default: throw new ArgumentOutOfRangeException();
-            }
+            return new KinematicRotationControls(_target, _camera, _sensitivity, _invert);
         }
 
         private RotationControls _controls;
-    
-        private enum Mode : byte
-        {
-            Kinematic, Dynamic
-        }
     }
 }
