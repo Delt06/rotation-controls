@@ -7,9 +7,9 @@ namespace RotationControls
         private readonly Transform _target;
         private readonly float _anglesPerScreen;
 
-        public KinematicRotationControls(Rigidbody target, Camera camera, float anglesPerScreen, bool invert) : base(camera)
+        public KinematicRotationControls(Transform target, Camera camera, float anglesPerScreen, bool invert) : base(camera)
         {
-            _target = target.transform;
+            _target = target;
             _anglesPerScreen = anglesPerScreen * (invert ? -1f : 1f);
         }
     

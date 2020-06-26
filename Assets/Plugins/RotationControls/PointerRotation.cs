@@ -6,7 +6,7 @@ namespace RotationControls
     public sealed class PointerRotation : MonoBehaviour, IDragHandler
     {
         [SerializeField] private Camera _camera = default;
-        [SerializeField] private Rigidbody _target = default;
+        [SerializeField] private Transform _target = default;
         [SerializeField] private bool _invert = true;
         [SerializeField] private float _sensitivity = 360f;
 

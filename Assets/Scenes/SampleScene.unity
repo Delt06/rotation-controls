@@ -609,10 +609,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 963194227}
-  _target: {fileID: 752138820}
+  _target: {fileID: 752138819}
   _invert: 1
   _sensitivity: 360
-  _mode: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
