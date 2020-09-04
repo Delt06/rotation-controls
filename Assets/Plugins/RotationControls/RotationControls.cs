@@ -13,8 +13,10 @@ namespace RotationControls
 
                 protected Vector3 GetAxis(Vector2 delta)
                 {
-                        return Vector3.Cross(delta, TowardsCamera);
+                        return Vector3.Cross(DeltaInCameraSpace(delta), TowardsCamera);
                 }
+
+                private Vector3 DeltaInCameraSpace(Vector3 delta) => Camera.transform.rotation * delta;
 
                 private Vector3 TowardsCamera => -Camera.transform.forward;
         
