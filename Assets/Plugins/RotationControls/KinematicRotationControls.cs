@@ -2,32 +2,33 @@
 
 namespace RotationControls
 {
-    public sealed class KinematicRotationControls : RotationControls
-    {
-        private readonly Transform _target;
-        private readonly float _anglesPerScreen;
+	public sealed class KinematicRotationControls : RotationControls
+	{
+		private readonly Transform _target;
+		private readonly float _anglesPerScreen;
 
-        public KinematicRotationControls(Transform target, Camera camera, float anglesPerScreen, bool invert) : base(camera)
-        {
-            _target = target;
-            _anglesPerScreen = anglesPerScreen * (invert ? -1f : 1f);
-        }
-    
-        public override void Rotate(Vector2 pointerDelta)
-        {
-            var axis = GetAxis(pointerDelta);
-            var angle = GetAngle(pointerDelta);
+		public KinematicRotationControls(Transform target, Camera camera, float anglesPerScreen, bool invert) :
+			base(camera)
+		{
+			_target = target;
+			_anglesPerScreen = anglesPerScreen * (invert ? -1f : 1f);
+		}
 
-            _target.Rotate(axis, angle, Space.World);
-        }
+		public override void Rotate(Vector2 pointerDelta)
+		{
+			var axis = GetAxis(pointerDelta);
+			var angle = GetAngle(pointerDelta);
 
-        private float GetAngle(Vector2 delta)
-        {
-            var viewportDelta = Camera.ScreenToViewportPoint(delta);
-            var viewportDistance = viewportDelta.magnitude;
-            var angle = viewportDistance * _anglesPerScreen;
+			_target.Rotate(axis, angle, Space.World);
+		}
 
-            return angle;
-        }
-    }
+		private float GetAngle(Vector2 delta)
+		{
+			var viewportDelta = Camera.ScreenToViewportPoint(delta);
+			var viewportDistance = viewportDelta.magnitude;
+			var angle = viewportDistance * _anglesPerScreen;
+
+			return angle;
+		}
+	}
 }

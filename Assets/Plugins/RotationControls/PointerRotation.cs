@@ -3,28 +3,26 @@ using UnityEngine.EventSystems;
 
 namespace RotationControls
 {
-    public sealed class PointerRotation : MonoBehaviour, IDragHandler
-    {
-        [SerializeField] private Camera _camera = default;
-        [SerializeField] private Transform _target = default;
-        [SerializeField] private bool _invert = true;
-        [SerializeField] private float _sensitivity = 360f;
+	public sealed class PointerRotation : MonoBehaviour, IDragHandler
+	{
+		[SerializeField] private Camera _camera = default;
+		[SerializeField] private Transform _target = default;
+		[SerializeField] private bool _invert = true;
+		[SerializeField] private float _sensitivity = 360f;
 
-        void IDragHandler.OnDrag(PointerEventData eventData)
-        {
-            _controls.Rotate(eventData.delta);
-        }
+		void IDragHandler.OnDrag(PointerEventData eventData)
+		{
+			_controls.Rotate(eventData.delta);
+		}
 
-        private void Awake()
-        {
-            _controls = CreateControls();
-        }
+		private void Awake()
+		{
+			_controls = CreateControls();
+		}
 
-        private RotationControls CreateControls()
-        {
-            return new KinematicRotationControls(_target, _camera, _sensitivity, _invert);
-        }
+		private RotationControls CreateControls() =>
+			new KinematicRotationControls(_target, _camera, _sensitivity, _invert);
 
-        private RotationControls _controls;
-    }
+		private RotationControls _controls;
+	}
 }
